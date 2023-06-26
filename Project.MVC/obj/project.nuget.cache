@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1XfuEl1TnE4XY0LeVSlxI6Jt5aARirMx9uUQtVItFzJCjebDyWEeUOny8HiplMa5i7vmvgREE0e0kiBuxNK7BQ==",
+  "dgSpecHash": "46YMBTu4HO/qMd7lQyrUDYeIOpYxSzFT8TB/KoK/2Hu5BybMhpXjAtNOpMZv6Zx+rLQPJylgNxcTqZpGwfFfNw==",
   "success": true,
   "projectFilePath": "/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/Project.MVC.csproj",
   "expectedPackageFiles": [
+    "/Users/lidijacutura/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/lidijacutura/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
@@ -20,7 +22,7 @@
     "/Users/lidijacutura/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "/Users/lidijacutura/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
+    "/Users/lidijacutura/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.data.sqlclient/5.0.2/microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.data.sqlclient.sni.runtime/5.0.1/microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.entityframeworkcore/7.0.8/microsoft.entityframeworkcore.7.0.8.nupkg.sha512",

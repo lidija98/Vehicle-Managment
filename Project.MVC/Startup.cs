@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Ninject.Web.AspNetCore;
+﻿using Ninject.Web.AspNetCore;
 using Ninject.Web.AspNetCore.Hosting;
+using Project.Service;
+using Project.Service.Data;
+using Project.Service.Services;
 
 public class Startup : AspNetCoreStartupBase
 {
@@ -17,6 +19,13 @@ public class Startup : AspNetCoreStartupBase
         base.ConfigureServices(services);
 
         // Add your services configuration HERE
+
+        // Configure AutoMapper
+        services.AddAutoMapper(typeof(Startup).Assembly);
+
+        services.AddTransient<IVehicleDbContext, VehicleDbContext>();
+        services.AddTransient<IVehicleService, VehicleService>();
+
     }
 
     public override void Configure(IApplicationBuilder app)

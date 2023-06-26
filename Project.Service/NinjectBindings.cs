@@ -1,4 +1,5 @@
 ﻿using Project.Service.Data;
+using Project.Service.Services;
 
 namespace Project.Service
 {
@@ -7,6 +8,7 @@ namespace Project.Service
         public override void Load()
         {
             Bind<IVehicleDbContext>().To<VehicleDbContext>();
+            Bind<IVehicleService>().To<VehicleService>();
         }
     }
 }

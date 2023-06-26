@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "+bEJKtJZGT2ZPdhRfhOfCISA0dxiW77CkKkM+3D0McKDwuVWIwOASqtZAR6sNpCQ5LyLwCiMbxuD0tsMIg3UEg==",
+  "dgSpecHash": "Y8+6G3dT8O2DLmjyfC67L5III+IfDteDUqXB0G5Gu1l3AV6zvoCCgRYL+osM+zd525DF8hJ9VNJVLPOuap0fVw==",
   "success": true,
   "projectFilePath": "/Users/lidijacutura/Projects/VehicleManagment/Project.Service/Project.Service.csproj",
   "expectedPackageFiles": [
+    "/Users/lidijacutura/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/lidijacutura/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
@@ -12,7 +14,7 @@
     "/Users/lidijacutura/.nuget/packages/k4os.compression.lz4.streams/1.3.5/k4os.compression.lz4.streams.1.3.5.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/k4os.hash.xxhash/1.0.8/k4os.hash.xxhash.1.0.8.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "/Users/lidijacutura/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
+    "/Users/lidijacutura/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.data.sqlclient/5.0.2/microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.data.sqlclient.sni.runtime/5.0.1/microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "/Users/lidijacutura/.nuget/packages/microsoft.entityframeworkcore/7.0.8/microsoft.entityframeworkcore.7.0.8.nupkg.sha512",
