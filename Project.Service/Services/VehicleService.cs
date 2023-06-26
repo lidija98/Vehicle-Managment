@@ -22,7 +22,7 @@ namespace Project.Service
         public async Task<int> CreateVehicleMake(VehicleMakeDto vehicleMakeDto)
         {
             var vehicleMake = _mapper.Map<VehicleMake>(vehicleMakeDto);
-            _dbContext.VehicleMakes.Add(vehicleMake);
+            _dbContext.VehicleMake.Add(vehicleMake);
             await _dbContext.SaveChangesAsync();
 
             return vehicleMake.Id;
@@ -32,7 +32,7 @@ namespace Project.Service
         public async Task<int> CreateVehicleModel(VehicleModelDto vehicleModelDto)
         {
             var vehicleModel = _mapper.Map<VehicleModel>(vehicleModelDto);
-            _dbContext.VehicleModels.Add(vehicleModel);
+            _dbContext.VehicleModel.Add(vehicleModel);
             await _dbContext.SaveChangesAsync();
 
             return vehicleModel.Id;
@@ -41,11 +41,11 @@ namespace Project.Service
         // Delete a vehicle make
         public async Task<bool> DeleteVehicleMake(int id)
         {
-            var vehicleMake = await _dbContext.VehicleMakes.FindAsync(id);
+            var vehicleMake = await _dbContext.VehicleMake.FindAsync(id);
             if (vehicleMake == null)
                 return false;
 
-            _dbContext.VehicleMakes.Remove(vehicleMake);
+            _dbContext.VehicleMake.Remove(vehicleMake);
             await _dbContext.SaveChangesAsync();
 
             return true;
@@ -54,11 +54,11 @@ namespace Project.Service
         // Delete a vehicle model
         public async Task<bool> DeleteVehicleModel(int id)
         {
-            var vehicleModel = await _dbContext.VehicleModels.FindAsync(id);
+            var vehicleModel = await _dbContext.VehicleModel.FindAsync(id);
             if (vehicleModel == null)
                 return false;
 
-            _dbContext.VehicleModels.Remove(vehicleModel);
+            _dbContext.VehicleModel.Remove(vehicleModel);
             await _dbContext.SaveChangesAsync();
 
             return true;
@@ -67,7 +67,7 @@ namespace Project.Service
         // Get a vehicle make by Id
         public async Task<VehicleMakeDto> GetVehicleMake(int id)
         {
-            var vehicleMake = await _dbContext.VehicleMakes.FindAsync(id);
+            var vehicleMake = await _dbContext.VehicleMake.FindAsync(id);
 
             return _mapper.Map<VehicleMakeDto>(vehicleMake);
         }
@@ -75,7 +75,7 @@ namespace Project.Service
         // Get all vehicle makes
         public async Task<List<VehicleMakeDto>> GetVehicleMakes()
         {
-            var vehicleMakes = await _dbContext.VehicleMakes.ToListAsync();
+            var vehicleMakes = await _dbContext.VehicleMake.ToListAsync();
 
             return _mapper.Map<List<VehicleMakeDto>>(vehicleMakes);
         }
@@ -83,7 +83,7 @@ namespace Project.Service
         // Get a vehicle model by Id
         public async Task<VehicleModelDto> GetVehicleModel(int id)
         {
-            var vehicleModel = await _dbContext.VehicleModels.FindAsync(id);
+            var vehicleModel = await _dbContext.VehicleModel.FindAsync(id);
 
             return _mapper.Map<VehicleModelDto>(vehicleModel);
         }
@@ -91,7 +91,7 @@ namespace Project.Service
         // Get all vehicle models
         public async Task<List<VehicleModelDto>> GetVehicleModels()
         {
-            var vehicleModels = await _dbContext.VehicleModels.ToListAsync();
+            var vehicleModels = await _dbContext.VehicleModel.ToListAsync();
 
             return _mapper.Map<List<VehicleModelDto>>(vehicleModels);
         }
@@ -99,7 +99,7 @@ namespace Project.Service
         // Update a vehicle make
         public async Task<bool> UpdateVehicleMake(VehicleMakeDto vehicleMakeDto)
         {
-            var existingVehicleMake = await _dbContext.VehicleMakes.FindAsync(vehicleMakeDto.Id);
+            var existingVehicleMake = await _dbContext.VehicleMake.FindAsync(vehicleMakeDto.Id);
             if (existingVehicleMake == null)
                 return false;
 
@@ -112,7 +112,7 @@ namespace Project.Service
         // Update a vehicle model
         public async Task<bool> UpdateVehicleModel(VehicleModelDto vehicleModelDto)
         {
-            var existingVehicleModel = await _dbContext.VehicleModels.FindAsync(vehicleModelDto.Id);
+            var existingVehicleModel = await _dbContext.VehicleModel.FindAsync(vehicleModelDto.Id);
             if (existingVehicleModel == null)
                 return false;
 

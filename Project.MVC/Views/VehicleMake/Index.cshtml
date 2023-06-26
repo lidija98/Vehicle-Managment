@@ -1,0 +1,34 @@
+﻿@using Project.MVC.Models
+
+@model List<Project.MVC.Models.VehicleMakeViewModel>
+
+<h2>Vehicle Makes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Abbreviation</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var make in Model)
+        {
+            <tr>
+                <td>@make.Id</td>
+                <td>@make.Name</td>
+                <td>@make.Abrv</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@make.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@make.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">Create New</a>
+
+<!-- Pagination, Sorting, Filtering controls -->

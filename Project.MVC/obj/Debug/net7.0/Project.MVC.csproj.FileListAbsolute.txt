@@ -95,3 +95,7 @@
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Ninject.Web.AspNetCore.dll
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Ninject.Web.Common.dll
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Ninject.Web.Common.SelfHost.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/AutoMapper.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.Design.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Pomelo.EntityFrameworkCore.MySql.Design.dll

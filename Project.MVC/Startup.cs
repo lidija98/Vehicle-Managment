@@ -1,4 +1,5 @@
-﻿using Ninject.Web.AspNetCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Ninject.Web.AspNetCore;
 using Ninject.Web.AspNetCore.Hosting;
 using Project.Service;
 using Project.Service.Data;
@@ -19,6 +20,12 @@ public class Startup : AspNetCoreStartupBase
         base.ConfigureServices(services);
 
         // Add your services configuration HERE
+
+        // Add DbContext using MySQL provider
+        services.AddDbContext<VehicleDbContext>(options =>
+            options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
+            new MySqlServerVersion(new Version(8, 0, 26))));
+
 
         // Configure AutoMapper
         services.AddAutoMapper(typeof(Startup).Assembly);

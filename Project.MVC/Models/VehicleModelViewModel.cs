@@ -1,4 +1,6 @@
-﻿public class VehicleModelViewModel
+﻿namespace Project.MVC.Models;
+
+public class VehicleModelViewModel
 {
     public int Id { get; set; }
     public int MakeId { get; set; }

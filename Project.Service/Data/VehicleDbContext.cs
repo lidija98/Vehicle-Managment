@@ -8,8 +8,8 @@ namespace Project.Service.Data
     // Interface for the VehicleDbContext
     public interface IVehicleDbContext
     {
-        DbSet<VehicleMake> VehicleMakes { get; set; }
-        DbSet<VehicleModel> VehicleModels { get; set; }
+        DbSet<VehicleMake> VehicleMake { get; set; }
+        DbSet<VehicleModel> VehicleModel { get; set; }
 
         Task<int> SaveChangesAsync();
     }
@@ -20,8 +20,8 @@ namespace Project.Service.Data
         {
         }
 
-        public DbSet<VehicleMake> VehicleMakes { get; set; }
-        public DbSet<VehicleModel> VehicleModels { get; set; }
+        public DbSet<VehicleMake> VehicleMake { get; set; }
+        public DbSet<VehicleModel> VehicleModel { get; set; }
 
         // Saves the changes made in the DbContext to the database
         public Task<int> SaveChangesAsync()
