@@ -1,10 +1,12 @@
 ﻿namespace Project.Service.DTO
 {
-	public class VehicleMakeDto
+    // Represents a data transfer object (DTO) for VehicleMake
+
+    public class VehicleMakeDto
 	{
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Abrv { get; set; }
-    }
+    }   
 }
 

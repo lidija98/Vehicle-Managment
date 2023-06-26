@@ -5,10 +5,13 @@ using Project.Service.Models;
 
 namespace Project.Service.Data
 {
+    // Interface for the VehicleDbContext
     public interface IVehicleDbContext
     {
         DbSet<VehicleMake> VehicleMakes { get; set; }
         DbSet<VehicleModel> VehicleModels { get; set; }
+
+        Task<int> SaveChangesAsync();
     }
 
     public class VehicleDbContext : DbContext, IVehicleDbContext
@@ -19,6 +22,12 @@ namespace Project.Service.Data
 
         public DbSet<VehicleMake> VehicleMakes { get; set; }
         public DbSet<VehicleModel> VehicleModels { get; set; }
+
+        // Saves the changes made in the DbContext to the database
+        public Task<int> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<VehicleDbContext>
