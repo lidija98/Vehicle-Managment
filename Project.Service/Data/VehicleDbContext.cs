@@ -24,9 +24,9 @@ namespace Project.Service.Data
         public DbSet<VehicleModel> VehicleModel { get; set; }
 
         // Saves the changes made in the DbContext to the database
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await base.SaveChangesAsync();
         }
     }
 
