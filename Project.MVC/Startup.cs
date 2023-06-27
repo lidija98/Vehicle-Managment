@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ninject.Web.AspNetCore;
 using Ninject.Web.AspNetCore.Hosting;
+using Project.MVC.MappingProfiles;
 using Project.Service;
 using Project.Service.Data;
+using Project.Service.MappingProfiles;
 using Project.Service.Services;
 
 public class Startup : AspNetCoreStartupBase
@@ -28,7 +30,7 @@ public class Startup : AspNetCoreStartupBase
 
 
         // Configure AutoMapper
-        services.AddAutoMapper(typeof(Startup).Assembly);
+        services.AddAutoMapper(typeof(ServiceMappingProfile).Assembly, typeof(MvcMappingProfile).Assembly);
 
         services.AddTransient<IVehicleDbContext, VehicleDbContext>();
         services.AddTransient<IVehicleService, VehicleService>();
@@ -60,7 +62,8 @@ public class Startup : AspNetCoreStartupBase
         {
             endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}"
+            );
         });
     }
 

@@ -40,9 +40,11 @@
   <ItemGroup>
     <None Remove="Views\VehicleMake\" />
     <None Remove="Views\VehicleModel\" />
+    <None Remove="MappingProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\VehicleMake\" />
     <Folder Include="Views\VehicleModel\" />
+    <Folder Include="MappingProfiles\" />
   </ItemGroup>
 </Project>

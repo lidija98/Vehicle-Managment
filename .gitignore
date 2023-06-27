@@ -477,4 +477,6 @@ $RECYCLE.BIN/
 *.lnk
 
 appsettings.json
+bin/
+obj/
 

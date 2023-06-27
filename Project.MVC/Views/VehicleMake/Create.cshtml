@@ -1,6 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model Project.MVC.Models.VehicleMakeViewModel
+
+<h2>Create Vehicle Make</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Abrv)
+        @Html.TextBoxFor(m => m.Abrv, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Abrv)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
 }
 
+<a asp-action="Index">Back to List</a>
