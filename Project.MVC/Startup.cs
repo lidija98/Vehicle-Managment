@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ninject.Web.AspNetCore;
 using Ninject.Web.AspNetCore.Hosting;
+using Project.MVC.Controllers;
 using Project.MVC.MappingProfiles;
 using Project.Service;
 using Project.Service.Data;
@@ -21,8 +22,6 @@ public class Startup : AspNetCoreStartupBase
     {
         base.ConfigureServices(services);
 
-        // Add your services configuration HERE
-
         // Add DbContext using MySQL provider
         services.AddDbContext<VehicleDbContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
@@ -34,6 +33,8 @@ public class Startup : AspNetCoreStartupBase
 
         services.AddTransient<IVehicleDbContext, VehicleDbContext>();
         services.AddTransient<IVehicleService, VehicleService>();
+        services.AddTransient<IVehicleMakeController, VehicleMakeController>();
+        services.AddTransient<IVehicleModelController, VehicleModelController>();
 
     }
 

@@ -1,8 +1,28 @@
-﻿@using Project.MVC.Models
+﻿@using X.PagedList
+@model IPagedList<Project.MVC.Models.VehicleMakeViewModel>
 
-@model List<Project.MVC.Models.VehicleMakeViewModel>
+@{
+    ViewData["Title"] = "Vehicle Makes";
+}
 
 <h2>Vehicle Makes</h2>
+
+@using (Html.BeginForm("Index", "VehicleMake", FormMethod.Get))
+{
+    <p>
+        Sort by:
+        <select name="sort">
+            <option value="">Default</option>
+            <option value="Name">Name (Ascending)</option>
+            <option value="Name_Desc">Name (Descending)</option>
+        </select>
+        <input type="submit" value="Sort" />
+    </p>
+    <p>
+        Filter by name: <input type="text" name="filter" value="@ViewBag.CurrentFilter" />
+        <input type="submit" value="Filter" />
+    </p>
+}
 
 <table class="table">
     <thead>
@@ -29,6 +49,29 @@
     </tbody>
 </table>
 
-<a asp-action="Create">Create New</a>
+<div class="text-center">
+    <ul class="pagination">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">&laquo;</a>
+            </li>
+        }
 
-<!-- Pagination, Sorting, Filtering controls -->
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">&raquo;</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<a asp-action="Create">Create New</a>

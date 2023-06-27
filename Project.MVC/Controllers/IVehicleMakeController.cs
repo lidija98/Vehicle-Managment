@@ -5,7 +5,7 @@ namespace Project.MVC.Controllers
 {
 	public interface IVehicleMakeController
 	{
-        Task<IActionResult> Index();
+        Task<IActionResult> Index(string sort, string filter, int page = 1);
         IActionResult Create();
         Task<IActionResult> Create(VehicleMakeViewModel viewModel);
         Task<IActionResult> Edit(int id);

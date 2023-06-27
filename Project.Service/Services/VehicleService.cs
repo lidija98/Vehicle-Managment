@@ -1,9 +1,9 @@
 ﻿using Project.Service.Services;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Project.Service.Data;
 using Project.Service.Models;
 using Project.Service.DTO;
+using X.PagedList;
 
 namespace Project.Service
 {
@@ -72,12 +72,37 @@ namespace Project.Service
             return _mapper.Map<VehicleMakeDto>(vehicleMake);
         }
 
-        // Get all vehicle makes
-        public async Task<List<VehicleMakeDto>> GetVehicleMakes()
+        // Get all vehicle makes with sorting, filtering, and paging
+        public async Task<IPagedList<VehicleMakeDto>> GetVehicleMakes(string sort, string filter, int page, int pageSize)
         {
-            var vehicleMakes = await _dbContext.VehicleMake.ToListAsync();
+            var query = _dbContext.VehicleMake.AsQueryable();
 
-            return _mapper.Map<List<VehicleMakeDto>>(vehicleMakes);
+            // Filtering
+            if (!string.IsNullOrEmpty(filter))
+            {
+                query = query.Where(m => m.Name != null && m.Name.Contains(filter));
+            }
+
+            // Sorting
+            switch (sort)
+            {
+                case "Name_Desc":
+                    query = query.OrderByDescending(m => m.Name);
+                    break;
+
+                case "Name":
+                    query = query.OrderBy(m => m.Name);
+                    break;
+
+                default:
+                    query = query.OrderBy(m => m.Id);
+                    break;
+            }
+
+            // Paging
+            var pagedMakes = await query.ToPagedListAsync(page, pageSize);
+
+            return _mapper.Map<IPagedList<VehicleMakeDto>>(pagedMakes);
         }
 
         // Get a vehicle model by Id
@@ -88,12 +113,37 @@ namespace Project.Service
             return _mapper.Map<VehicleModelDto>(vehicleModel);
         }
 
-        // Get all vehicle models
-        public async Task<List<VehicleModelDto>> GetVehicleModels()
+        // Get all vehicle models with sorting, filtering, and paging
+        public async Task<IPagedList<VehicleModelDto>> GetVehicleModels(string sort, string filter, int page, int pageSize)
         {
-            var vehicleModels = await _dbContext.VehicleModel.ToListAsync();
+            var query = _dbContext.VehicleModel.AsQueryable();
 
-            return _mapper.Map<List<VehicleModelDto>>(vehicleModels);
+            // Filtering
+            if (!string.IsNullOrEmpty(filter))
+            {
+                query = query.Where(m => m.Name != null && m.Name.Contains(filter));
+            }
+
+            // Sorting
+            switch (sort)
+            {
+                case "Name_Desc":
+                    query = query.OrderByDescending(m => m.Name);
+                    break;
+
+                case "Name":
+                    query = query.OrderBy(m => m.Name);
+                    break;
+
+                default:
+                    query = query.OrderBy(m => m.Id);
+                    break;
+            }
+
+            // Paging
+            var pagedModels = await query.ToPagedListAsync(page, pageSize);
+
+            return _mapper.Map<IPagedList<VehicleModelDto>>(pagedModels);
         }
 
         // Update a vehicle make

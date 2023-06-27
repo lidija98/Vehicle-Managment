@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Project.MVC.Controllers
 {
-    public class VehicleModelController : Controller
+    public class VehicleModelController : Controller, IVehicleModelController
     {
         // GET: /<controller>/
         public IActionResult Index()

@@ -3,11 +3,12 @@ using Project.Service.Services;
 using AutoMapper;
 using Project.Service.DTO;
 using Project.MVC.Models;
+using X.PagedList;
 
 
 namespace Project.MVC.Controllers
 {
-    public class VehicleMakeController : Controller
+    public class VehicleMakeController : Controller, IVehicleMakeController
     {
         private readonly IVehicleService _vehicleService;
         private readonly IMapper _mapper;
@@ -18,12 +19,17 @@ namespace Project.MVC.Controllers
             _mapper = mapper;
         }
 
-
-        // GET: Retrieves a list of vehicle makes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sort, string filter, int page = 1)
         {
-            var vehicleMakes = await _vehicleService.GetVehicleMakes();
-            var viewModel = _mapper.Map<List<VehicleMakeViewModel>>(vehicleMakes);
+            const int pageSize = 10;
+
+            var vehicleMakes = await _vehicleService.GetVehicleMakes(sort, filter, page, pageSize);
+
+            var viewModel = _mapper.Map<IPagedList<VehicleMakeViewModel>>(vehicleMakes);
+
+            // Pass the filter and sorting values to the view to maintain them in the input fields
+            ViewBag.CurrentFilter = filter;
+            ViewBag.CurrentSort = sort;
 
             return View(viewModel);
         }
@@ -39,7 +45,7 @@ namespace Project.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VehicleMakeViewModel viewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var vehicleMakeDto = _mapper.Map<VehicleMakeDto>(viewModel);
                 await _vehicleService.CreateVehicleMake(vehicleMakeDto);
@@ -54,7 +60,7 @@ namespace Project.MVC.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var vehicleMake = await _vehicleService.GetVehicleMake(id);
-            if(vehicleMake == null)
+            if (vehicleMake == null)
             {
                 return NotFound();
             }
@@ -69,17 +75,17 @@ namespace Project.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, VehicleMakeViewModel viewModel)
         {
-            if(id != viewModel.Id)
+            if (id != viewModel.Id)
             {
                 return NotFound();
             }
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var vehicleMakeDto = _mapper.Map<VehicleMakeDto>(viewModel);
                 var success = await _vehicleService.UpdateVehicleMake(vehicleMakeDto);
 
-                if(!success)
+                if (!success)
                 {
                     return NotFound();
                 }
@@ -94,7 +100,7 @@ namespace Project.MVC.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var vehicleMake = await _vehicleService.GetVehicleMake(id);
-            if(vehicleMake == null)
+            if (vehicleMake == null)
             {
                 return NotFound();
             }
@@ -103,7 +109,6 @@ namespace Project.MVC.Controllers
 
             return View(viewModel);
         }
-
 
         // POST: Delete // DeleteConfirmed
         [HttpPost]
@@ -118,8 +123,5 @@ namespace Project.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-
     }
 }
-

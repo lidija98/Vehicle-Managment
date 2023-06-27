@@ -99,3 +99,6 @@
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.Design.dll
 /Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/Pomelo.EntityFrameworkCore.MySql.Design.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/JetBrains.Annotations.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/X.PagedList.dll
+/Users/lidijacutura/Projects/VehicleManagment/Project.MVC/bin/Debug/net7.0/X.PagedList.Mvc.Core.dll
