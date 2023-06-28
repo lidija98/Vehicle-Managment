@@ -62,6 +62,7 @@ namespace Project.MVC.Controllers
             var vehicleMake = await _vehicleService.GetVehicleMake(id);
             if (vehicleMake == null)
             {
+                // Returns 404 Not Found if the vehicle make is not found
                 return NotFound();
             }
 
@@ -77,6 +78,7 @@ namespace Project.MVC.Controllers
         {
             if (id != viewModel.Id)
             {
+                // Returns 404 Not Found if the id in the URL does not match the id in the view model
                 return NotFound();
             }
 
@@ -87,9 +89,11 @@ namespace Project.MVC.Controllers
 
                 if (!success)
                 {
+                    // Returns 404 Not Found if the update operation fails
                     return NotFound();
                 }
 
+                // Returns 302 Found (redirect) to the Index action after a successful update
                 return RedirectToAction(nameof(Index));
             }
 
@@ -102,6 +106,7 @@ namespace Project.MVC.Controllers
             var vehicleMake = await _vehicleService.GetVehicleMake(id);
             if (vehicleMake == null)
             {
+                // Returns 404 Not Found if the vehicle make is not found
                 return NotFound();
             }
 
@@ -118,9 +123,11 @@ namespace Project.MVC.Controllers
             var success = await _vehicleService.DeleteVehicleMake(id);
             if (!success)
             {
+                // Returns 404 Not Found if the delete operation fails
                 return NotFound();
             }
 
+            // Returns 404 Not Found if the delete operation fails
             return RedirectToAction(nameof(Index));
         }
     }

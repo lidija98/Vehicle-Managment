@@ -1,6 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using X.PagedList
+
+@model IPagedList<Project.MVC.Models.VehicleModelViewModel>
+
 @{
+    ViewData["Title"] = "Vehicle Models";
 }
 
+<h2>Vehicle Models</h2>
+
+@using (Html.BeginForm("Index", "VehicleModel", FormMethod.Get))
+{
+    <p>
+        Sort by:
+        <select name="sort">
+            <option value="">Default</option>
+            <option value="Name">Name (Ascending)</option>
+            <option value="Name_Desc">Name (Descending)</option>
+        </select>
+        <input type="submit" value="Sort" />
+    </p>
+    <p>
+        Filter by name: <input type="text" name="filter" value="@ViewBag.CurrentFilter" />
+        <input type="submit" value="Filter" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Make ID</th> 
+            <th>Name</th>
+            <th>Abbreviation</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Id</td> 
+                <td>@m.MakeId</td> 
+                <td>@m.Name</td>
+                <td>@m.Abrv</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@m.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@m.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <ul class="pagination">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">&laquo;</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter })">&raquo;</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<a asp-action="Create">Create New</a>

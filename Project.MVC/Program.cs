@@ -27,7 +27,6 @@ public class Program
 
         kernel.Load(typeof(AspNetCoreHostConfiguration).Assembly);
 
-        // Load the Ninject module from the Project.Service project
         kernel.Load(typeof(NinjectBindings).Assembly);
 
         return kernel;

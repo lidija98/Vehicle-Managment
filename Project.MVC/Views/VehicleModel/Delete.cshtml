@@ -1,6 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model Project.MVC.Models.VehicleModelViewModel
+
+<h2>Delete</h2>
+
+<p>Are you sure you want to delete the following vehicle model?</p>
+
+<div>
+    <h4>Vehicle Make Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">MakeID</dt>
+        <dd class="col-sm-10">@Model.MakeId</dd>
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Abbreviation</dt>
+        <dd class="col-sm-10">@Model.Abrv</dd>
+    </dl>
+</div>
+
+
+@using (Html.BeginForm("DeleteConfirmed", "VehicleModel", new { id = Model.Id }, FormMethod.Post, false, new { @class = "delete-form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
 }
+
 

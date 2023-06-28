@@ -77,10 +77,13 @@ namespace Project.Service
         {
             var query = _dbContext.VehicleMake.AsQueryable();
 
-            // Filtering
+            // Filtering by make
             if (!string.IsNullOrEmpty(filter))
             {
-                query = query.Where(m => m.Name != null && m.Name.Contains(filter));
+                query = query.Where(m =>
+                    m.Name != null && m.Name.Contains(filter) ||
+                    m.Id.ToString() == filter ||
+                    m.Abrv != null && m.Abrv.Contains(filter));
             }
 
             // Sorting
@@ -113,15 +116,30 @@ namespace Project.Service
             return _mapper.Map<VehicleModelDto>(vehicleModel);
         }
 
-        // Get all vehicle models with sorting, filtering, and paging
+        // Get all vehicle models with sorting, filtering (by make), and paging
         public async Task<IPagedList<VehicleModelDto>> GetVehicleModels(string sort, string filter, int page, int pageSize)
         {
-            var query = _dbContext.VehicleModel.AsQueryable();
+            var query = _dbContext.VehicleModel
+                .Join(_dbContext.VehicleMake, model => model.MakeId, make => make.Id, (model, make) => new { Model = model, Make = make })
+                .Select(result => new VehicleModelDto
+                {
+                    Id = result.Model.Id,
+                    Name = result.Model.Name,
+                    MakeId = result.Model.MakeId,
+                    Abrv = result.Model.Abrv,
+                    MakeName = result.Make.Name,
+                    MakeAbrv = result.Make.Abrv
+                })
+                .AsQueryable();
 
             // Filtering
             if (!string.IsNullOrEmpty(filter))
             {
-                query = query.Where(m => m.Name != null && m.Name.Contains(filter));
+                query = query.Where(m =>
+                    m.MakeName.Contains(filter) ||
+                    m.MakeId.ToString() == filter ||
+                    m.MakeAbrv.Contains(filter)
+                );
             }
 
             // Sorting
@@ -166,10 +184,19 @@ namespace Project.Service
             if (existingVehicleModel == null)
                 return false;
 
+            // Retrieve the corresponding VehicleMake entity based on the provided MakeId
+            var existingVehicleMake = await _dbContext.VehicleMake.FindAsync(vehicleModelDto.MakeId);
+            if (existingVehicleMake == null)
+                return false;
+
+            // Assign the MakeId of the existing VehicleModel entity
+            existingVehicleModel.MakeId = existingVehicleMake.Id;
+
             _mapper.Map(vehicleModelDto, existingVehicleModel);
             await _dbContext.SaveChangesAsync();
 
             return true;
         }
+
     }
 }
